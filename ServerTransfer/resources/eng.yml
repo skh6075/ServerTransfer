@@ -1,0 +1,14 @@
+prefix: "§l§b[INFO]§r§7 "
+
+command.name: "st"
+command.description: "st command."
+
+command.use.only.ingame: "It can only be used in games."
+dont.have.permission: "You are not authorized to use this command."
+
+successed.spawn.transferentity: "Successfully created server move entity where you are standing. Please turn on the server at full power."
+failed.spawn.transferentity: "/st [server name] [server ip] [server port]"
+
+server.move.title: "%name% Server Transfer!!"
+server.move.subTitle: "Move server in 5 seconds"
+server.not.found: "The server could not be found."
