@@ -8,3 +8,10 @@ PocketMine-MP Server Transfer for Human Query.
 ### PMMPQuery Announce
 
 - Please. Server IP can be at least a minimum regardless of domain or general IP. However, please write it wrong and don't add any issues.
+
+### Domain Check Function
+
+```php
+$domain = "test.kro.kr";
+echo gethostbyname($domain);
+```
