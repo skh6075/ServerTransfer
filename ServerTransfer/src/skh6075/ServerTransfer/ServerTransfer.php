@@ -19,8 +19,6 @@ class ServerTransfer extends PluginBase{
 
     protected $lang = null;
 
-
-
     public static function getInstance (): ?ServerTransfer{
         return self::$instance;
     }
@@ -28,19 +26,15 @@ class ServerTransfer extends PluginBase{
     public function onLoad (): void{
         self::$instance = $this;
         Entity::registerEntity(TransferEntity::class, true, [ 'TransferEntity ']);
-        
-        array_map (function (string $langData): void{
-            $this->saveResource($langData . ".yml", true);
-        }, [ 'kor', 'eng' ]);
-
-        $language = (new Config(\pocketmine\DATA . 'server.properties', Config::PROPERTIES))->get ('language');
-        $this->lang = new PluginLang ($this, $language);
     }
 
     public function onEnable (): void{
-        $this->getServer()
-            ->getCommandMap()
-            ->register ('skh6075', new ServerTransferCommand ($this->lang->translateString ('command.name', [], false), $this->lang->translateString ('command.description', [], false)));
+        $this->saveResource("kor.yml");
+        $this->saveResource("eng.yml");
+        $language = $this->getServer()->getLanguage()->getLang();
+        $this->lang = new PluginLang ($this, $language);
+        
+        $this->getServer()->getCommandMap()->register (strtolower($this->getName()), new ServerTransferCommand ($this->lang->translateString ('command.name', [], false), $this->lang->translateString ('command.description', [], false)));
     }
 
     public function getLang (): PluginLang{
@@ -56,6 +50,7 @@ class ServerTransfer extends PluginBase{
         $nbt->setString('serverName', $serverName);
         $nbt->setString('serverIp', $serverIp);
         $nbt->setInt('serverPort', $port);
+        
         $entity = Entity::createEntity('TransferEntity', $player->level, $nbt);
         $entity->setNameTag ("§l§f{$serverName}\nSetting....");
         $entity->setNameTagAlwaysVisible(true);
