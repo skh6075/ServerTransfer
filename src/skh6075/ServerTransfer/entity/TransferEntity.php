@@ -59,6 +59,7 @@ final class TransferEntity extends Human{
 
             if (!$this->server_online) {
                 $this->check_server ++;
+                $this->query->onUpdateQuery();
                 $this->server_online = $this->query->isConnect();
                 if ($this->check_server >= 250) {
                     $this->close();
