@@ -13,6 +13,10 @@ final class ServerQuery{
     public function __construct (string $ip, int $port) {
         $this->serverAddress = gethostbyname($ip);
         $this->serverPort = $port;
+        $this->onUpdateQuery();
+    }
+
+    public function onUpdateQuery(): void{
         if (($query = $this->UT3Query($this->serverAddress, $this->serverPort))) {
             $this->server = $query;
         }
