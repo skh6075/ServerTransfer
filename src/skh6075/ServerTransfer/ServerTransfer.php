@@ -23,7 +23,7 @@ final class ServerTransfer extends PluginBase{
     public function onEnable(): void{
         $this->saveResource("lang/kor.yml");
         $this->saveResource("lang/eng.yml");
-        self::$lang = PluginLang::getInstance()->setParameters($language = $this->getServer()->getLanguage()->getLang(), yaml_parse(file_get_contents($this->getDataFolder() . "lang/" . $language . ".yml")));
+        self::$lang = PluginLang::getInstance()->setProperties($language = $this->getServer()->getLanguage()->getLang(), yaml_parse(file_get_contents($this->getDataFolder() . "lang/" . $language . ".yml")));
 
         $this->getServer()->getCommandMap()->register(strtolower($this->getName()), new ServerTransferCommand($this));
     }
