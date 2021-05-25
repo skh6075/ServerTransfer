@@ -15,7 +15,7 @@ final class PluginLang{
         self::setInstance($this);
     }
 
-    public function setParameters(string $lang, array $translates = []): self{
+    public function setProperties(string $lang, array $translates = []): self{
         $this->lang = $lang;
         $this->translates = $translates;
         return $this;
